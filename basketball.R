@@ -21,3 +21,10 @@ bb$totals_4[2]
 bb2 <- as.data.table( NBASeasonTeamByYear("UTA","2019") )
 bb2[opponent=='Toronto Raptors',.(tm,opp)]
 bb2[tm>125,.(opponent,tm,opp,x_4)]
+
+# game statistics
+bb <- as.data.table( NBAPerGameStatistics(season = 2018) )
+nrow(bb)
+bb[tm=='ATL',1:10]
+bb[,.N,tm]
+
