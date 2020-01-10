@@ -36,3 +36,15 @@ bb[tm=='ATL',.(player,tm,fg,pts)] # return rows where 'tm' equals 'ATL', show sp
 
 bb[,.N,tm] # group all rows by 'tm' and show how many per group - .N is a special symbol
 
+#
+# graph the data
+#
+library(ggplot2)
+
+city <- 'ATL'
+dat <- bb[tm==city,.(player,tm,fg,pts)][order(fg),]
+
+ggplot() + geom_bar(data=dat,aes(x=reorder(player,-fg),y=fg),stat="identity") +
+   theme(axis.text.x=element_text(angle=60,hjust=1)) +
+   labs(x="",y="") + ggtitle(paste0("field goals - ",city))
+
